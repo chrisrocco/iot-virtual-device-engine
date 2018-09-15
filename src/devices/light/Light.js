@@ -1,4 +1,4 @@
-const Device = require('../core/Device')
+const Device = require('../Device')
 
 const Light = ({id, events}) => {
     Device({

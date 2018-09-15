@@ -1,3 +1,11 @@
+/**
+ * Base Device Module
+ * =========================
+ * This stateful module represents (virtualizes) a real device process.
+ * It can only communicate via message-passing, as it should be runnable on a real device.
+ * 
+ * To run this on a real device, you should inject a custom 'events' object that internally uses MQTT or similar.
+ */
 
 const Device = ({ 
     id,

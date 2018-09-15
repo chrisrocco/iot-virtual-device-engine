@@ -1,5 +1,10 @@
 const { lightsProjection, gpsProjection } = require('./projections.module')
 
+/**
+ * Device Shadow Service
+ * ===========================
+ * Consumes state change events for all devices, and creates custom projections of the data for querying.
+ */
 const Shadows = (events) => {
 
     const projections = {}

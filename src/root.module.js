@@ -1,5 +1,5 @@
 const EventEmitter = require('events')
-const Shadows = require('./core/shadows/shadows')
+const Shadows = require('./core/shadows/shadows.service')
 const spawnDevice = require('./devices/spawnDevice')
 
 const RootModule = () => {
@@ -7,7 +7,7 @@ const RootModule = () => {
     // Main event bus
     const events = new EventEmitter()
 
-    // In-memory devices image
+    // In-memory image for tracking active 'virtual processes'
     const devices = {}
 
     // Data-Broker: forward local events to PubSub network
@@ -27,7 +27,7 @@ const RootModule = () => {
 
         // CQRS Pattern
         // Data flows in one direction - commands and queries are on different ends of the dataflow pipeline.
-        query: Shadows(events),
+        query: Shadows(events), // Bootstraps the shadow service's device projections
         command: {
             createDevice: async ({type}) => {
                 const id = await spawnDevice({events, type})

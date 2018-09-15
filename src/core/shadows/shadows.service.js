@@ -8,7 +8,7 @@ const reduceGps = require('./gps.reducer')
  *
  * _Note_ - This will be moved in to an external service, and use PubSub. (if I feel like it)
  */
-const Shadows = (events) => {
+const ShadowsService = (events) => {
 
     const projections = {}
 
@@ -26,4 +26,4 @@ const Shadows = (events) => {
     }
 }
 
-module.exports = Shadows
+module.exports = ShadowsService

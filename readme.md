@@ -1,6 +1,11 @@
 ## IOT Virtual Device Engine
 This is a "process manager" for virtual IOT devices. Easily provision virtual IOT devices and attach them to your project's device network just like real ones.
 
+## Running the Demo
+Command to launch the demo in your browser:
+
+`npm i && npm run demo`
+
 ## REST API
 
 #### Create Device

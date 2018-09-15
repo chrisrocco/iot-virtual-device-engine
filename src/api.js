@@ -1,10 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
+
 const RootModule = require('./root.module')
 
 const root = RootModule()
 
 const api = express()
+api.use(cors())
 api.use(bodyParser())
 
 api.post('/devices/create', (req, res) => {

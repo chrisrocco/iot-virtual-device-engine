@@ -1,6 +1,6 @@
-const Device = require('../Device')
+const Device = require('./Device')
 
-const GPS = ({ id, events }) => {
+const GpsDevice = ({ id, events }) => {
 
     Device({
         id, events,
@@ -17,4 +17,4 @@ const GPS = ({ id, events }) => {
     })
 }
 
-module.exports = GPS
+module.exports = GpsDevice

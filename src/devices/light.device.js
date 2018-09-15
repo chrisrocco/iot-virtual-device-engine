@@ -1,6 +1,6 @@
-const Device = require('../Device')
+const Device = require('./Device')
 
-const Light = ({id, events}) => {
+const LightDevice = ({id, events}) => {
     Device({
         id, events,
         heartbeat: (state, {dt}) => {
@@ -13,4 +13,4 @@ const Light = ({id, events}) => {
     })
 }
 
-module.exports = Light
+module.exports = LightDevice

@@ -1,7 +1,7 @@
 const uuidv1 = require('uuid/v1')
 
-const Light = require('./light/Light')
-const GPS = require('./gps/GPS')
+const Light = require('./light.device')
+const GPS = require('./gps.device')
 
 const spawnDevice = async ({ type, events }) => {
     const id = uuidv1()

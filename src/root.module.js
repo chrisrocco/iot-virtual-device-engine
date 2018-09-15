@@ -1,41 +1,32 @@
 const EventEmitter = require('events')
-const Light = require('./devices/Light')
-const GPS = require('./devices/GPS')
+const Shadows = require('./core/shadows/shadows')
+const spawnDevice = require('./devices/spawnDevice')
 
 const RootModule = () => {
 
     const events = new EventEmitter()
     const devices = {}
 
+    events.on('devices.state', ({id,type,state}) => {
+        // TODO - publish on PubSub network
+    })
+    
     const exists = id => !!devices[id]
 
     return {
         devices,
         events,
 
-        ctrl: {
-            createLight: (data) => {
-                const id = (Math.random() * 10000).toFixed()
-                Light({id, events})
-                devices[id] = {
-                    ...data,
-                    type: 'light'
-                }
-                events.emit('devices.lights.created', id)
-                return id
-            },
+        query: Shadows(events),
 
-            createGps: (data) => {
-                const id = (Math.random() * 10000).toFixed()
-                GPS({id, events})
-                devices[id] = {
-                    ...data,
-                    type: 'gps'
-                }
-                events.emit('devices.gps.created', id)
+        command: {
+            createDevice: async ({type}) => {
+                const id = await spawnDevice({events, type})
+                devices[id] = { type }
+                events.emit('devices.created', {type, id})
+                events.on(`devices.${id}.state`, state => events.emit('devices.state', { id, type, state }))
                 return id
             },
-    
             sendConfig: async (id, conf) => {
                 if(!exists(id)) throw { status: 404 }
                 events.emit(`devices.${id}.config`, conf)

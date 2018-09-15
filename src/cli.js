@@ -16,7 +16,7 @@ program
         types.forEach(type => {
             conn.post(`/devices/create`, { type })
                 .then(r => r.data)
-                .then(({ msg, id }) => console.log(msg, id))
+                .then(console.log)
                 .catch(console.error)  
         })
     })
